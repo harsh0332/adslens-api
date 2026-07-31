@@ -1,0 +1,79 @@
+{
+  "ad_id": "1778511163146817",
+  "page_name": "Zomato",
+  "page_id": "170229159669841",
+  "page_profile_pic": "https://scontent.frpr1-2.fna.fbcdn.net/v/t39.35426-6/746909102_2897288103943612_7086629920448700555_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=110&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=Lw3MMbugKJ0Q7kNvwGdlolF&_nc_oc=AdpW0VRg9cCY_6ERmVKlf1AJaIWO6LEmi2nH1Va_cvhiLEh1w6LvJbtOaVsY_guPa9A&_nc_zt=14&_nc_ht=scontent.frpr1-2.fna&_nc_gid=E3nMbFfDjU2pDeH2kbwRSw&_nc_ss=7b289&oh=00_AQB9YWo2wXxHlXj6YYh1DvFONatS44MwKGYpQlZYkr8DEQ&oe=6A6FC1A2",
+  "page_url": "https://www.facebook.com/zomato/",
+  "page_like_count": 1939657,
+  "page_categories": [
+    "Food & Drink"
+  ],
+  "title": "{{product.name}}",
+  "body": "{{product.brand}}",
+  "caption": "play.google.com",
+  "link_description": "{{product.description}}",
+  "link_url": "http://play.google.com/store/apps/details?id=com.application.zomato",
+  "cta_text": "Install now",
+  "cta_type": "INSTALL_MOBILE_APP",
+  "display_format": "DCO",
+  "video_hd_url": null,
+  "video_sd_url": null,
+  "image_url": null,
+  "preview_image_url": null,
+  "video_count": 0,
+  "image_count": 0,
+  "cards": [
+    {
+      "title": "Get up to 60% OFF and FREE delivery on Zomato.",
+      "body": "Order momos",
+      "link_url": "http://play.google.com/store/apps/details?id=com.application.zomato",
+      "cta_text": "Install Now",
+      "image_url": null,
+      "video_hd_url": "https://video.frpr1-1.fna.fbcdn.net/o1/v/t2/f2/m366/AQOCnWyNvFb0fYmpFTP4uzKxFA-58tG9KnEYOs75cVXI2fvN0pid1EQy5jU4Y3mIFoOIK7RWbeYX92WeFJ-BpV7q9xsr_5jEA4-TTWQL0gX0nw.mp4?_nc_cat=102&_nc_oc=AdrCNOIaPswhZvpmCuvKuMXf644dsFIzUWiIOdW_wB-AmW3l4hYQ_KKC7k9iJpXZHjA&_nc_sid=b66105&_nc_ht=video.frpr1-1.fna.fbcdn.net&_nc_ohc=xPEfyI_nCJEQ7kNvwERZK_b&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5WSV9VU0VDQVNFX1BST0RVQ1RfVFlQRS4uQzMuNzIwLmRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHAiLCJ4cHZfYXNzZXRfaWQiOjEwMjUxNTMxOTM3NzMzMDQsImFzc2V0X2FnZV9kYXlzIjoxMywidmlfdXNlY2FzZV9pZCI6MTA3OTksImR1cmF0aW9uX3MiOjYsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&vs=65e15cf5cb344ade&_nc_vs=HBksFQIYRWZiX2VwaGVtZXJhbC8zODQ3QkZEOEMwQjAyMDVEREUzOTdCQkFGN0VEMjM4Ql9tdF8xX3ZpZGVvX2Rhc2hpbml0Lm1wNBUAAsgBEgAVAhhAZmJfcGVybWFuZW50LzQ3NDc3MkQ4NDUxNjVCOUYyN0VCMDIzM0M2MDAxOEI3X2F1ZGlvX2Rhc2hpbml0Lm1wNBUCAsgBEgAoABgAGwKIB3VzZV9vaWwBMRJwcm9ncmVzc2l2ZV9yZWNpcGUBMRUAACbwo6S_4pfSAxUCKAJDMywXQBgAAAAAAAAYGWRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHARAHUAZd6oAQA&_nc_gid=E3nMbFfDjU2pDeH2kbwRSw&_nc_ss=7b289&_nc_zt=28&oh=00_AQD6zeatbuLDRH_fkQ6Sw_F7KFhn76EaTz1A8gX_r8KyrQ&oe=6A6FA7E2"
+    },
+    {
+      "title": "Get up to 60% OFF and FREE delivery on Zomato.",
+      "body": "Order momos",
+      "link_url": "http://play.google.com/store/apps/details?id=com.application.zomato",
+      "cta_text": "Install Now",
+      "image_url": null,
+      "video_hd_url": "https://video.frpr1-1.fna.fbcdn.net/o1/v/t2/f2/m366/AQOip3NG5agv-k3MXHO23pQOoe88x2UeFA4siIEHd3AfMONSU9oou5MudVw3gZavRqt6E37zCnwlnAL6ma2uQFnzW1QdrwniyUBYDvWmzu_-bg.mp4?_nc_cat=103&_nc_oc=Adpj3HDc5i63lmk-aYaWWJX8MYXlG1m6KBl8sBD8kJB1gppb8JQsAKmAefY2wbqbKnQ&_nc_sid=b66105&_nc_ht=video.frpr1-1.fna.fbcdn.net&_nc_ohc=C_Ll5HcGifgQ7kNvwHNwlOg&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5WSV9VU0VDQVNFX1BST0RVQ1RfVFlQRS4uQzMuMTI4MC5kYXNoX2gyNjQtYmFzaWMtZ2VuMl83MjBwIiwieHB2X2Fzc2V0X2lkIjoxMzczMzA5MDQ0NzQwMjU1LCJhc3NldF9hZ2VfZGF5cyI6MTMsInZpX3VzZWNhc2VfaWQiOjEwNzk5LCJkdXJhdGlvbl9zIjo2LCJ1cmxnZW5fc291cmNlIjoid3d3In0%3D&ccb=17-1&vs=21c5c9fb055bbcd1&_nc_vs=HBksFQIYRWZiX2VwaGVtZXJhbC8yOTRGNTBFRUIyMzgyNzNGNjJEMjNBQUZEMTBCRDY5Nl9tdF8xX3ZpZGVvX2Rhc2hpbml0Lm1wNBUAAsgBEgAVAhhAZmJfcGVybWFuZW50L0VDNDk2M0NGQjA0QTIwMEZCNzY1OEUwMzY0NzdDQ0IwX2F1ZGlvX2Rhc2hpbml0Lm1wNBUCAsgBEgAoABgAGwKIB3VzZV9vaWwBMRJwcm9ncmVzc2l2ZV9yZWNpcGUBMRUAACa-wrrcjcHwBBUCKAJDMywXQBgAAAAAAAAYGWRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHARAHUAZd6oAQA&_nc_gid=E3nMbFfDjU2pDeH2kbwRSw&_nc_ss=7b289&_nc_zt=28&oh=00_AQBLv13D1S2z4CLeHY3NXEVnYV6hKbQvBUtWXTrSGztVLg&oe=6A6F9EDD"
+    },
+    {
+      "title": "Get up to 60% OFF and FREE delivery on Zomato.",
+      "body": "Order momos",
+      "link_url": "http://play.google.com/store/apps/details?id=com.application.zomato",
+      "cta_text": "Install Now",
+      "image_url": null,
+      "video_hd_url": "https://video.frpr1-1.fna.fbcdn.net/o1/v/t2/f2/m366/AQNQsamdPnXnsk0eJUcmdgQ1MQkUG-D0z_ClbUMPA6kRhhQOYWcqQWHWAvXg5hK2qX5nS4pyXzSGiOgwCI40grEi5x5fLcPHnalRH6hnRr0g8Q.mp4?_nc_cat=104&_nc_oc=AdqMCWn8mQ2z3RFddSlg1gnXFXanwBCo_f017f56Uu4zjXVEiutX5LuoHf6-HvQCdC0&_nc_sid=b66105&_nc_ht=video.frpr1-1.fna.fbcdn.net&_nc_ohc=kjeHwj9BGrsQ7kNvwG0iqGs&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5WSV9VU0VDQVNFX1BST0RVQ1RfVFlQRS4uQzMuNzIwLmRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHAiLCJ4cHZfYXNzZXRfaWQiOjE2OTE3ODkyMDIwODExNDgsImFzc2V0X2FnZV9kYXlzIjoxMywidmlfdXNlY2FzZV9pZCI6MTA3OTksImR1cmF0aW9uX3MiOjYsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&vs=4ad982bc2a6b3625&_nc_vs=HBksFQIYRWZiX2VwaGVtZXJhbC80RjRBNTc1NDQyMTg1Q0JFNDFBRDhFN0NDNTA4QThCQl9tdF8xX3ZpZGVvX2Rhc2hpbml0Lm1wNBUAAsgBEgAVAhhAZmJfcGVybWFuZW50LzFBNDI2QzIzN0ZGQTNDQUUzOTJDRTc1Q0M0RTk1NjkyX2F1ZGlvX2Rhc2hpbml0Lm1wNBUCAsgBEgAoABgAGwKIB3VzZV9vaWwBMRJwcm9ncmVzc2l2ZV9yZWNpcGUBMRUAACb4lebmi6uBBhUCKAJDMywXQBgAAAAAAAAYGWRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHARAHUAZd6oAQA&_nc_gid=E3nMbFfDjU2pDeH2kbwRSw&_nc_ss=7b289&_nc_zt=28&oh=00_AQDWEq9n62ynfBtkK0uWPESfFz8QNGnGRq6fFmy2IgN9bA&oe=6A6FCABC"
+    },
+    {
+      "title": "Get up to 60% OFF and FREE delivery on Zomato.",
+      "body": "Order momos",
+      "link_url": "http://play.google.com/store/apps/details?id=com.application.zomato",
+      "cta_text": "Install Now",
+      "image_url": null,
+      "video_hd_url": "https://video.frpr1-1.fna.fbcdn.net/o1/v/t2/f2/m366/AQNQsamdPnXnsk0eJUcmdgQ1MQkUG-D0z_ClbUMPA6kRhhQOYWcqQWHWAvXg5hK2qX5nS4pyXzSGiOgwCI40grEi5x5fLcPHnalRH6hnRr0g8Q.mp4?_nc_cat=104&_nc_oc=AdqMCWn8mQ2z3RFddSlg1gnXFXanwBCo_f017f56Uu4zjXVEiutX5LuoHf6-HvQCdC0&_nc_sid=b66105&_nc_ht=video.frpr1-1.fna.fbcdn.net&_nc_ohc=kjeHwj9BGrsQ7kNvwG0iqGs&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5WSV9VU0VDQVNFX1BST0RVQ1RfVFlQRS4uQzMuNzIwLmRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHAiLCJ4cHZfYXNzZXRfaWQiOjE2OTE3ODkyMDIwODExNDgsImFzc2V0X2FnZV9kYXlzIjoxMywidmlfdXNlY2FzZV9pZCI6MTA3OTksImR1cmF0aW9uX3MiOjYsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&vs=4ad982bc2a6b3625&_nc_vs=HBksFQIYRWZiX2VwaGVtZXJhbC80RjRBNTc1NDQyMTg1Q0JFNDFBRDhFN0NDNTA4QThCQl9tdF8xX3ZpZGVvX2Rhc2hpbml0Lm1wNBUAAsgBEgAVAhhAZmJfcGVybWFuZW50LzFBNDI2QzIzN0ZGQTNDQUUzOTJDRTc1Q0M0RTk1NjkyX2F1ZGlvX2Rhc2hpbml0Lm1wNBUCAsgBEgAoABgAGwKIB3VzZV9vaWwBMRJwcm9ncmVzc2l2ZV9yZWNpcGUBMRUAACb4lebmi6uBBhUCKAJDMywXQBgAAAAAAAAYGWRhc2hfaDI2NC1iYXNpYy1nZW4yXzcyMHARAHUAZd6oAQA&_nc_gid=E3nMbFfDjU2pDeH2kbwRSw&_nc_ss=7b289&_nc_zt=28&oh=00_AQDWEq9n62ynfBtkK0uWPESfFz8QNGnGRq6fFmy2IgN9bA&oe=6A6FCABC"
+    }
+  ],
+  "start_date_ts": 1784185200,
+  "end_date_ts": 1785308400,
+  "is_active": true,
+  "publisher_platforms": [
+    "FACEBOOK",
+    "INSTAGRAM"
+  ],
+  "total_active_time": null,
+  "collation_count": null,
+  "categories": [
+    "UNKNOWN"
+  ],
+  "reach_estimate": null,
+  "spend": null,
+  "currency": null,
+  "impressions_text": null,
+  "video_duration_s": null,
+  "creative_asset_age_days": null,
+  "creative_asset_id": null,
+  "source_url": "https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=ALL&id=1778511163146817&is_targeted_country=false&media_type=all&search_type=keyword_unordered"
+}

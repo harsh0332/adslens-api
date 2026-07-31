@@ -1,0 +1,119 @@
+{
+  "ad_id": "856357634174685",
+  "page_name": "Zomato",
+  "page_id": "170229159669841",
+  "page_profile_pic": "https://scontent.frpr1-1.fna.fbcdn.net/v/t39.35426-6/689471857_1503919221137341_6040656222833342009_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=104&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=y5Ch_gaS_qsQ7kNvwGBQh_j&_nc_oc=Adre6JGrhYlnOYMvQjxYNR7hJV4J6z6hDjkAa0xP29sglGnoWNwNqlH-QbZJztTX8wY&_nc_zt=14&_nc_ht=scontent.frpr1-1.fna&_nc_gid=rfFQbzyYRbbGmG7PQzOAqg&_nc_ss=7b289&oh=00_AQCqrOtgeyKEYogUM5Ls6ckhzOQv2_9tL1vMhq7_ru4jWQ&oe=6A6FACF9",
+  "page_url": "https://www.facebook.com/zomato/",
+  "page_like_count": 1939657,
+  "page_categories": [
+    "Food & Drink"
+  ],
+  "title": "{{product.name}}",
+  "body": "{{product.brand}}",
+  "caption": "play.google.com",
+  "link_description": "{{product.description}}",
+  "link_url": "http://play.google.com/store/apps/details?id=com.application.zomato",
+  "cta_text": "Order now",
+  "cta_type": "ORDER_NOW",
+  "display_format": "DCO",
+  "video_hd_url": null,
+  "video_sd_url": null,
+  "image_url": null,
+  "preview_image_url": null,
+  "video_count": 0,
+  "image_count": 0,
+  "cards": [
+    {
+      "title": "60% OFF + FREE Delivery",
+      "body": "Your favourites, now at 60% OFF + FREE Delivery.\nOrder Now!",
+      "link_url": "http://play.google.com/store/apps/details?id=com.application.zomato",
+      "cta_text": "Order Now",
+      "image_url": "https://scontent.frpr1-1.fna.fbcdn.net/v/t39.35426-6/689361642_1221468283205838_2488631891158623533_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=01bwvCFdqm8Q7kNvwGvyuRc&_nc_oc=AdrjbNhKpFvjP6UhXpbBaFvJEJpzO2-yHpj8pNVK80urR0s11Q4W8TGj24munj4q_tM&_nc_zt=14&_nc_ht=scontent.frpr1-1.fna&_nc_gid=rfFQbzyYRbbGmG7PQzOAqg&_nc_ss=7b289&oh=00_AQAuwRTozo5p1y4t62rKjCINs0RrscRkc80WC9Oc80bCvw&oe=6A6FB729",
+      "video_hd_url": null
+    },
+    {
+      "title": "60% OFF + FREE Delivery",
+      "body": "Your favourites, now at 60% OFF + FREE Delivery.\nOrder Now!",
+      "link_url": "http://play.google.com/store/apps/details?id=com.application.zomato",
+      "cta_text": "Order Now",
+      "image_url": "https://scontent.frpr1-2.fna.fbcdn.net/v/t39.35426-6/689862094_1601704257565934_7917758343720780927_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=yuVs30Hfmx8Q7kNvwFNFpt2&_nc_oc=AdqO-A9q__XQsqRO4FMRjNMYS-3Jon8QuMsRwm9rGZao_sc7b-vHWqYLNmTDJyLrMrM&_nc_zt=14&_nc_ht=scontent.frpr1-2.fna&_nc_gid=rfFQbzyYRbbGmG7PQzOAqg&_nc_ss=7b289&oh=00_AQDx0C9DFiXcHpvxjf5ecLwcGkxqwFy2g93Gzovv3FB_-Q&oe=6A6FB7E9",
+      "video_hd_url": null
+    },
+    {
+      "title": "60% OFF + FREE Delivery",
+      "body": "Your favourites, now at 60% OFF + FREE Delivery.\nOrder Now!",
+      "link_url": "http://play.google.com/store/apps/details?id=com.application.zomato",
+      "cta_text": "Order Now",
+      "image_url": "https://scontent.frpr1-2.fna.fbcdn.net/v/t39.35426-6/689044880_2012715459337896_4303646706206757061_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=L0u2swPYY6AQ7kNvwEwJpEF&_nc_oc=AdpO8mfkVCDF_NeGdTeW8Ej55RAB_FT1vo6F9TRnMiQpEst9bJijNKvULk14xjgNiJo&_nc_zt=14&_nc_ht=scontent.frpr1-2.fna&_nc_gid=rfFQbzyYRbbGmG7PQzOAqg&_nc_ss=7b289&oh=00_AQAkqqWDtqH2lXGzGVa9SKjRr89eqIAFoU_QAwT9Xl1h0g&oe=6A6FB8F9",
+      "video_hd_url": null
+    },
+    {
+      "title": "60% OFF + FREE Delivery",
+      "body": "Your favourites, now at 60% OFF + FREE Delivery.\nOrder Now!",
+      "link_url": "http://play.google.com/store/apps/details?id=com.application.zomato",
+      "cta_text": "Order Now",
+      "image_url": "https://scontent.frpr1-2.fna.fbcdn.net/v/t39.35426-6/689044880_2012715459337896_4303646706206757061_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=L0u2swPYY6AQ7kNvwEwJpEF&_nc_oc=AdpO8mfkVCDF_NeGdTeW8Ej55RAB_FT1vo6F9TRnMiQpEst9bJijNKvULk14xjgNiJo&_nc_zt=14&_nc_ht=scontent.frpr1-2.fna&_nc_gid=rfFQbzyYRbbGmG7PQzOAqg&_nc_ss=7b289&oh=00_AQAkqqWDtqH2lXGzGVa9SKjRr89eqIAFoU_QAwT9Xl1h0g&oe=6A6FB8F9",
+      "video_hd_url": null
+    },
+    {
+      "title": "60% OFF + FREE Delivery",
+      "body": "Your favourites, now at 60% OFF + FREE Delivery.\nOrder Now!",
+      "link_url": "http://play.google.com/store/apps/details?id=com.application.zomato",
+      "cta_text": "Order Now",
+      "image_url": "https://scontent.frpr1-2.fna.fbcdn.net/v/t39.35426-6/689044880_2012715459337896_4303646706206757061_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=L0u2swPYY6AQ7kNvwEwJpEF&_nc_oc=AdpO8mfkVCDF_NeGdTeW8Ej55RAB_FT1vo6F9TRnMiQpEst9bJijNKvULk14xjgNiJo&_nc_zt=14&_nc_ht=scontent.frpr1-2.fna&_nc_gid=rfFQbzyYRbbGmG7PQzOAqg&_nc_ss=7b289&oh=00_AQAkqqWDtqH2lXGzGVa9SKjRr89eqIAFoU_QAwT9Xl1h0g&oe=6A6FB8F9",
+      "video_hd_url": null
+    },
+    {
+      "title": "60% OFF + FREE Delivery",
+      "body": "Your favourites, now at 60% OFF + FREE Delivery.\nOrder Now!",
+      "link_url": "http://play.google.com/store/apps/details?id=com.application.zomato",
+      "cta_text": "Order Now",
+      "image_url": "https://scontent.frpr1-2.fna.fbcdn.net/v/t39.35426-6/689044880_2012715459337896_4303646706206757061_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=L0u2swPYY6AQ7kNvwEwJpEF&_nc_oc=AdpO8mfkVCDF_NeGdTeW8Ej55RAB_FT1vo6F9TRnMiQpEst9bJijNKvULk14xjgNiJo&_nc_zt=14&_nc_ht=scontent.frpr1-2.fna&_nc_gid=rfFQbzyYRbbGmG7PQzOAqg&_nc_ss=7b289&oh=00_AQAkqqWDtqH2lXGzGVa9SKjRr89eqIAFoU_QAwT9Xl1h0g&oe=6A6FB8F9",
+      "video_hd_url": null
+    },
+    {
+      "title": "60% OFF + FREE Delivery",
+      "body": "Your favourites, now at 60% OFF + FREE Delivery.\nOrder Now!",
+      "link_url": "http://play.google.com/store/apps/details?id=com.application.zomato",
+      "cta_text": "Order Now",
+      "image_url": "https://scontent.frpr1-1.fna.fbcdn.net/v/t39.35426-6/689856289_2226979974779761_5965786537069735223_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=mJoC-zSa5FwQ7kNvwHa7B1k&_nc_oc=AdoBq1kJrFW9f6e7sJ5EYmHQ1qHaJrdAfyh6GIPdA1cTNfdkkURybmWRV7ax2QMt5Fk&_nc_zt=14&_nc_ht=scontent.frpr1-1.fna&_nc_gid=rfFQbzyYRbbGmG7PQzOAqg&_nc_ss=7b289&oh=00_AQAQWflWffllNXFoEkjeG7Y4eDb6FM9NjRiRtez9olQsyQ&oe=6A6FACF8",
+      "video_hd_url": null
+    },
+    {
+      "title": "60% OFF + FREE Delivery",
+      "body": "Your favourites, now at 60% OFF + FREE Delivery.\nOrder Now!",
+      "link_url": "http://play.google.com/store/apps/details?id=com.application.zomato",
+      "cta_text": "Order Now",
+      "image_url": "https://scontent.frpr1-1.fna.fbcdn.net/v/t39.35426-6/689856289_2226979974779761_5965786537069735223_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=mJoC-zSa5FwQ7kNvwHa7B1k&_nc_oc=AdoBq1kJrFW9f6e7sJ5EYmHQ1qHaJrdAfyh6GIPdA1cTNfdkkURybmWRV7ax2QMt5Fk&_nc_zt=14&_nc_ht=scontent.frpr1-1.fna&_nc_gid=rfFQbzyYRbbGmG7PQzOAqg&_nc_ss=7b289&oh=00_AQAQWflWffllNXFoEkjeG7Y4eDb6FM9NjRiRtez9olQsyQ&oe=6A6FACF8",
+      "video_hd_url": null
+    },
+    {
+      "title": "60% OFF + FREE Delivery",
+      "body": "Your favourites, now at 60% OFF + FREE Delivery.\nOrder Now!",
+      "link_url": "http://play.google.com/store/apps/details?id=com.application.zomato",
+      "cta_text": "Order Now",
+      "image_url": "https://scontent.frpr1-2.fna.fbcdn.net/v/t39.35426-6/690924400_947621591443000_7860318912718216182_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=78HKkFDtPJ8Q7kNvwHVuROK&_nc_oc=AdrEQc9bHCphqVrjWNnbLHMQY2xYVAyM4RThhql9o__WHI18kh6eFE3J9ZGPdpb4DWw&_nc_zt=14&_nc_ht=scontent.frpr1-2.fna&_nc_gid=rfFQbzyYRbbGmG7PQzOAqg&_nc_ss=7b289&oh=00_AQCCyNLRv_lqtPfEprILfdqkf2tx5ZxhQ1eog2oJl0Gv3Q&oe=6A6FB7D2",
+      "video_hd_url": null
+    }
+  ],
+  "start_date_ts": 1777878000,
+  "end_date_ts": 1785308400,
+  "is_active": true,
+  "publisher_platforms": [
+    "FACEBOOK",
+    "INSTAGRAM"
+  ],
+  "total_active_time": null,
+  "collation_count": 1,
+  "categories": [
+    "UNKNOWN"
+  ],
+  "reach_estimate": null,
+  "spend": null,
+  "currency": null,
+  "impressions_text": null,
+  "video_duration_s": null,
+  "creative_asset_age_days": null,
+  "creative_asset_id": null,
+  "source_url": "https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=ALL&id=856357634174685&is_targeted_country=false&media_type=all&search_type=keyword_unordered"
+}

@@ -1,0 +1,63 @@
+{
+  "ad_id": "1791291305173642",
+  "page_name": "Big Bowl",
+  "page_id": "102680081469902",
+  "page_profile_pic": "https://scontent.frpr1-1.fna.fbcdn.net/v/t39.35426-6/723587726_3091978424525442_2429248662826225086_n.jpg?stp=dst-jpg_s60x60_tt6&_nc_cat=103&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=fHiNhEaFGtcQ7kNvwHPYbkF&_nc_oc=AdqClLRMRdJAaojXuCUgPBZfA9DBt94_l6U5N1E7yBG6LVUjzQmIaxOUrl5IHo_U9rg&_nc_zt=14&_nc_ht=scontent.frpr1-1.fna&_nc_gid=mcHd3b-dNDNWvDrSUhqotQ&_nc_ss=7b289&oh=00_AQDDkSnd93PnhtEgA4p2mMuozZfFNSVWdl2SAEJV58rzPw&oe=6A6FBD72",
+  "page_url": "https://www.facebook.com/officialbigbowl/",
+  "page_like_count": 2180,
+  "page_categories": [
+    "Fast Food"
+  ],
+  "title": "{{product.name}}",
+  "body": "{{product.brand}}",
+  "caption": "bigbowl.in",
+  "link_description": "{{product.description}}",
+  "link_url": "https://bigbowl.in/order-now/",
+  "cta_text": "Order now",
+  "cta_type": "ORDER_NOW",
+  "display_format": "DCO",
+  "video_hd_url": null,
+  "video_sd_url": null,
+  "image_url": null,
+  "preview_image_url": null,
+  "video_count": 0,
+  "image_count": 0,
+  "cards": [
+    {
+      "title": "Cravings Done Properly\u200b",
+      "body": "So creamy it keeps you going back for more. Paneer Afghani Bowl at \u20b9249, loaded with soft paneer.\u200b",
+      "link_url": "https://bigbowl.in/order-now/",
+      "cta_text": "Order Now",
+      "image_url": "https://scontent.frpr1-2.fna.fbcdn.net/v/t39.35426-6/723042505_2392682081242882_1452776376046010462_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=KVoMJ77-unAQ7kNvwGA1PUO&_nc_oc=AdrwYohl_wICNaB9N4hO5qzhKVHpqR8-HLw0oKzOMdkWURi5bz9ZI6uzJXJWx1tFj6A&_nc_zt=14&_nc_ht=scontent.frpr1-2.fna&_nc_gid=mcHd3b-dNDNWvDrSUhqotQ&_nc_ss=7b289&oh=00_AQAjAbfY2etAnyN_yR24DlKe7y-d45hyqG1VV9fPiY0elg&oe=6A6FBB7A",
+      "video_hd_url": null
+    },
+    {
+      "title": "Cravings Done Properly\u200b",
+      "body": "So creamy it keeps you going back for more. Paneer Afghani Bowl at \u20b9249, loaded with soft paneer.\u200b",
+      "link_url": "https://bigbowl.in/order-now/",
+      "cta_text": "Order Now",
+      "image_url": "https://scontent.frpr1-1.fna.fbcdn.net/v/t39.35426-6/721119624_872054502621419_7820207157526637344_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=2C57k0DkHRYQ7kNvwFUtSzL&_nc_oc=AdqBfwyushAGGvU5boRNTuBdUIrlBbKZkR6INo1zar-zFqvIbF5DlTINTiU23W9vjxE&_nc_zt=14&_nc_ht=scontent.frpr1-1.fna&_nc_gid=mcHd3b-dNDNWvDrSUhqotQ&_nc_ss=7b289&oh=00_AQAoWh9PT4GF6CRHxKuTTQmJWTq4eo6V7MmMorO28zHjGQ&oe=6A6FBD2F",
+      "video_hd_url": null
+    }
+  ],
+  "start_date_ts": 1781334000,
+  "end_date_ts": 1783926000,
+  "is_active": false,
+  "publisher_platforms": [
+    "FACEBOOK",
+    "INSTAGRAM"
+  ],
+  "total_active_time": null,
+  "collation_count": null,
+  "categories": [
+    "UNKNOWN"
+  ],
+  "reach_estimate": null,
+  "spend": null,
+  "currency": null,
+  "impressions_text": null,
+  "video_duration_s": null,
+  "creative_asset_age_days": null,
+  "creative_asset_id": null,
+  "source_url": "https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=ALL&id=1791291305173642&is_targeted_country=false&media_type=all&search_type=keyword_unordered"
+}

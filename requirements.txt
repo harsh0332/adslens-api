@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+curl_cffi>=0.15.0
+pydantic>=2
+pytest
+pytest-asyncio
