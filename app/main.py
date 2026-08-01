@@ -79,6 +79,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@app.on_event("startup")
+def log_startup_config():
+    key_id = os.getenv("RAZORPAY_KEY_ID") or RAZORPAY_KEY_ID
+    if not key_id:
+        print("[STARTUP] Razorpay Key ID: NOT SET")
+    elif key_id.startswith("rzp_live_"):
+        print("[STARTUP] Razorpay Key ID mode: rzp_live_ (LIVE)")
+    elif key_id.startswith("rzp_test_"):
+        print("[STARTUP] Razorpay Key ID mode: rzp_test_ (TEST)")
+    else:
+        prefix = key_id[:8] if len(key_id) >= 8 else key_id
+        print(f"[STARTUP] Razorpay Key ID mode: unknown ({prefix}...)")
+
 # --------------------------------------------------------------------------- #
 # In-memory LRU Ad Cache (TTL 30 minutes, max 500 entries)
 # --------------------------------------------------------------------------- #
@@ -540,14 +554,22 @@ async def create_order(payload: CreateOrderIn, request: Request) -> dict:
                 "payment_capture": 1,
             }
         )
-    except razorpay.errors.AuthenticationError as exc:
-        print(f"[ERROR] Razorpay auth failure: {exc}")
-        raise HTTPException(
-            500, "Razorpay authentication failed. Check credentials."
-        ) from exc
-    except Exception as exc:
+    except (razorpay.errors.BadRequestError, razorpay.errors.ServerError) as exc:
+        err_msg = str(exc)
         print(f"[ERROR] Razorpay order creation failed: {exc}")
-        raise HTTPException(502, f"Razorpay API error: {exc}") from exc
+        if "Authentication failed" in err_msg or "auth" in err_msg.lower():
+            raise HTTPException(
+                500, "Payment gateway rejected backend credentials. Please verify Razorpay keys."
+            ) from exc
+        raise HTTPException(502, f"Razorpay API error: {err_msg}") from exc
+    except Exception as exc:
+        err_msg = str(exc)
+        print(f"[ERROR] Razorpay order creation unexpected failure: {exc}")
+        if "Authentication failed" in err_msg or "auth" in err_msg.lower():
+            raise HTTPException(
+                500, "Payment gateway rejected backend credentials. Please verify Razorpay keys."
+            ) from exc
+        raise HTTPException(502, f"Razorpay API error: {err_msg}") from exc
 
     order_id = order.get("id") if isinstance(order, dict) else None
     if not order_id:

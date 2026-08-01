@@ -19,6 +19,24 @@ def test_create_order_missing_creds(monkeypatch):
     response = client.post("/api/create-order", json={"amount": 4900})
     assert response.status_code == 500
 
+
+def test_create_order_auth_failure(monkeypatch):
+    monkeypatch.setenv("RAZORPAY_KEY_ID", "rzp_test_mock_123")
+    monkeypatch.setenv("RAZORPAY_KEY_SECRET", "mock_secret_456")
+
+    mock_client = MagicMock()
+    import razorpay.errors
+
+    mock_client.order.create.side_effect = razorpay.errors.BadRequestError(
+        "Authentication failed"
+    )
+
+    with patch("razorpay.Client", return_value=mock_client):
+        response = client.post("/api/create-order", json={"amount": 4900})
+        assert response.status_code == 500
+        assert "Payment gateway rejected backend credentials" in response.json()["detail"]
+
+
 def test_create_order_valid_amount(monkeypatch):
     monkeypatch.setenv("RAZORPAY_KEY_ID", "rzp_test_mock_123")
     monkeypatch.setenv("RAZORPAY_KEY_SECRET", "mock_secret_456")
