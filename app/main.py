@@ -28,7 +28,7 @@ import re
 import sys
 import time
 import os
-from collections import defaultdict, deque
+from collections import OrderedDict, defaultdict, deque
 from typing import Any, Iterable
 from urllib.parse import parse_qs, unquote, urlparse
 
@@ -54,6 +54,9 @@ CHALLENGE_ROUNDS = 4
 RATE_LIMIT_PER_MIN = 12
 SESSION_MAX_AGE_S = 30 * 60
 
+CACHE_TTL_S = 30 * 60  # 30 minutes
+CACHE_MAX_SIZE = 500
+
 CHALLENGE_RE = re.compile(r"""fetch\(['"](/__rd_verify_[^'"]+)['"]""")
 SCRIPT_JSON_RE = re.compile(
     r'<script[^>]+type="application/json"[^>]*>(.*?)</script>', re.DOTALL
@@ -67,6 +70,75 @@ app.add_middleware(
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
+
+# --------------------------------------------------------------------------- #
+# In-memory LRU Ad Cache (TTL 30 minutes, max 500 entries)
+# --------------------------------------------------------------------------- #
+
+
+class ExtractCache:
+    def __init__(self, max_size: int = CACHE_MAX_SIZE, ttl_s: float = CACHE_TTL_S):
+        self.max_size = max_size
+        self.ttl_s = ttl_s
+        self._cache: OrderedDict[str, dict] = OrderedDict()
+        self.hits: int = 0
+        self.misses: int = 0
+
+    def get(self, ad_id: str) -> dict | None:
+        if not ad_id or ad_id not in self._cache:
+            self.misses += 1
+            return None
+
+        entry = self._cache[ad_id]
+        now = time.time()
+        if now - entry["cached_at"] > self.ttl_s:
+            del self._cache[ad_id]
+            self.misses += 1
+            return None
+
+        self._cache.move_to_end(ad_id)
+        self.hits += 1
+
+        cached_payload = dict(entry["payload"])
+        cached_payload["cache_hit"] = True
+        cached_payload["cached_at"] = entry["cached_at"]
+        return cached_payload
+
+    def set(self, ad_id: str, payload: dict) -> None:
+        if not ad_id:
+            return
+        now = time.time()
+
+        if ad_id not in self._cache and len(self._cache) >= self.max_size:
+            self._cache.popitem(last=False)
+
+        self._cache[ad_id] = {
+            "cached_at": now,
+            "payload": payload,
+        }
+        self._cache.move_to_end(ad_id)
+
+    @property
+    def size(self) -> int:
+        now = time.time()
+        expired = [k for k, v in self._cache.items() if now - v["cached_at"] > self.ttl_s]
+        for k in expired:
+            del self._cache[k]
+        return len(self._cache)
+
+    @property
+    def stats(self) -> dict:
+        total = self.hits + self.misses
+        hit_rate = round(self.hits / total, 4) if total > 0 else 0.0
+        return {
+            "cache_size": self.size,
+            "cache_hits": self.hits,
+            "cache_misses": self.misses,
+            "cache_hit_rate": hit_rate,
+        }
+
+
+_extract_cache = ExtractCache()
 
 # --------------------------------------------------------------------------- #
 # Rate limiting (in-memory; move to Redis before running multiple workers)
@@ -375,6 +447,12 @@ class ExtractIn(BaseModel):
 async def extract(payload: ExtractIn, request: Request) -> dict:
     rate_limit(request)
     ad_id = extract_ad_id(payload.url)
+
+    # 1. Check in-memory cache
+    cached = _extract_cache.get(ad_id)
+    if cached is not None:
+        return cached
+
     target = ad_library_url(ad_id, payload.country)
 
     session = await get_session()
@@ -403,6 +481,13 @@ async def extract(payload: ExtractIn, request: Request) -> dict:
         score_obj = None
 
     ad_data["score"] = score_obj
+
+    # 2. Store in cache only on successful extraction
+    now = time.time()
+    ad_data["cache_hit"] = False
+    ad_data["cached_at"] = now
+    _extract_cache.set(ad_id, ad_data)
+
     return ad_data
 
 
@@ -492,7 +577,12 @@ async def proxy(url: str, request: Request, filename: str = "ad.mp4"):
 
 @app.get("/api/health")
 async def health() -> dict:
-    return {"ok": True, "session_age_s": round(time.time() - _session_born)}
+    res = {
+        "ok": True,
+        "session_age_s": round(time.time() - _session_born),
+    }
+    res.update(_extract_cache.stats)
+    return res
 
 
 # --------------------------------------------------------------------------- #
