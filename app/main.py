@@ -27,6 +27,7 @@ import json
 import re
 import sys
 import time
+import os
 from collections import defaultdict, deque
 from typing import Any, Iterable
 from urllib.parse import parse_qs, unquote, urlparse
@@ -41,7 +42,10 @@ from pydantic import BaseModel
 # Config
 # --------------------------------------------------------------------------- #
 
-ALLOWED_ORIGINS = ["http://localhost:3000", "https://YOUR-DOMAIN.com"]
+raw_origins = os.getenv(
+    "ALLOWED_ORIGINS", "http://localhost:5173,http://localhost:3000"
+)
+ALLOWED_ORIGINS = [o.strip() for o in raw_origins.split(",") if o.strip()]
 ALLOWED_MEDIA_SUFFIXES = (".fbcdn.net", ".cdninstagram.com")
 
 IMPERSONATE = "chrome"
