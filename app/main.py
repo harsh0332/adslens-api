@@ -38,6 +38,7 @@ from urllib.parse import parse_qs, unquote, urlparse
 import razorpay
 from curl_cffi.requests import AsyncSession
 from fastapi import FastAPI, HTTPException, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel
@@ -63,7 +64,8 @@ CACHE_MAX_SIZE = 500
 
 RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID", "")
 RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET", "")
-ALLOWED_PAYMENT_AMOUNTS = {4900, 19900, 49900}
+MIN_PAYMENT_AMOUNT_PAISE = 1000      # ₹10
+MAX_PAYMENT_AMOUNT_PAISE = 1000000   # ₹10,000
 
 CHALLENGE_RE = re.compile(r"""fetch\(['"](/__rd_verify_[^'"]+)['"]""")
 SCRIPT_JSON_RE = re.compile(
@@ -78,6 +80,16 @@ app.add_middleware(
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    return JSONResponse(
+        status_code=400,
+        content={
+            "detail": f"Invalid request payload or amount format. Amount must be an integer between {MIN_PAYMENT_AMOUNT_PAISE} paise (₹10) and {MAX_PAYMENT_AMOUNT_PAISE} paise (₹10,000)."
+        },
+    )
 
 
 @app.on_event("startup")
@@ -530,9 +542,14 @@ class CreateOrderIn(BaseModel):
 async def create_order(payload: CreateOrderIn, request: Request) -> dict:
     rate_limit(request)
 
-    if payload.amount not in ALLOWED_PAYMENT_AMOUNTS:
+    if (
+        not isinstance(payload.amount, int)
+        or payload.amount < MIN_PAYMENT_AMOUNT_PAISE
+        or payload.amount > MAX_PAYMENT_AMOUNT_PAISE
+    ):
         raise HTTPException(
-            400, f"Invalid amount. Amount must be one of: {sorted(list(ALLOWED_PAYMENT_AMOUNTS))}"
+            400,
+            f"Invalid amount. Amount must be an integer between {MIN_PAYMENT_AMOUNT_PAISE} paise (₹10) and {MAX_PAYMENT_AMOUNT_PAISE} paise (₹10,000).",
         )
 
     key_id = os.getenv("RAZORPAY_KEY_ID") or RAZORPAY_KEY_ID
@@ -574,6 +591,10 @@ async def create_order(payload: CreateOrderIn, request: Request) -> dict:
     order_id = order.get("id") if isinstance(order, dict) else None
     if not order_id:
         raise HTTPException(502, "Razorpay did not return a valid order ID.")
+
+    print(
+        f"[ORDER] Created order {order_id} for amount {payload.amount} paise (₹{payload.amount / 100:.2f})"
+    )
 
     return {
         "order_id": order_id,

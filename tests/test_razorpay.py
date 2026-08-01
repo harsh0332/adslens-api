@@ -8,10 +8,22 @@ from app.main import app
 
 client = TestClient(app)
 
-def test_create_order_invalid_amount():
-    response = client.post("/api/create-order", json={"amount": 100})
+def test_create_order_below_min_amount():
+    response = client.post("/api/create-order", json={"amount": 500})
     assert response.status_code == 400
     assert "Invalid amount" in response.text
+
+
+def test_create_order_above_max_amount():
+    response = client.post("/api/create-order", json={"amount": 2000000})
+    assert response.status_code == 400
+    assert "Invalid amount" in response.text
+
+
+def test_create_order_string_amount():
+    response = client.post("/api/create-order", json={"amount": "abc"})
+    assert response.status_code == 400
+
 
 def test_create_order_missing_creds(monkeypatch):
     monkeypatch.setenv("RAZORPAY_KEY_ID", "")
