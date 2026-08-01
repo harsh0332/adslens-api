@@ -23,19 +23,23 @@ from __future__ import annotations
 import asyncio
 import base64
 import binascii
+import hashlib
+import hmac
 import json
+import os
 import re
 import sys
 import time
-import os
+import uuid
 from collections import OrderedDict, defaultdict, deque
 from typing import Any, Iterable
 from urllib.parse import parse_qs, unquote, urlparse
 
+import razorpay
 from curl_cffi.requests import AsyncSession
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel
 
 # --------------------------------------------------------------------------- #
@@ -56,6 +60,10 @@ SESSION_MAX_AGE_S = 30 * 60
 
 CACHE_TTL_S = 30 * 60  # 30 minutes
 CACHE_MAX_SIZE = 500
+
+RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID", "")
+RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET", "")
+ALLOWED_PAYMENT_AMOUNTS = {4900, 19900, 49900}
 
 CHALLENGE_RE = re.compile(r"""fetch\(['"](/__rd_verify_[^'"]+)['"]""")
 SCRIPT_JSON_RE = re.compile(
@@ -498,6 +506,98 @@ async def score_endpoint(payload: dict, request: Request) -> dict:
         return score_ad(payload)
     except Exception as exc:
         raise HTTPException(400, f"Could not score ad payload: {exc}") from exc
+
+
+class CreateOrderIn(BaseModel):
+    amount: int
+
+
+@app.post("/api/create-order")
+async def create_order(payload: CreateOrderIn, request: Request) -> dict:
+    rate_limit(request)
+
+    if payload.amount not in ALLOWED_PAYMENT_AMOUNTS:
+        raise HTTPException(
+            400, f"Invalid amount. Amount must be one of: {sorted(list(ALLOWED_PAYMENT_AMOUNTS))}"
+        )
+
+    key_id = os.getenv("RAZORPAY_KEY_ID") or RAZORPAY_KEY_ID
+    key_secret = os.getenv("RAZORPAY_KEY_SECRET") or RAZORPAY_KEY_SECRET
+
+    if not key_id or not key_secret:
+        print("[ERROR] Razorpay credentials not set in environment.")
+        raise HTTPException(500, "Payment service authentication is not configured.")
+
+    client = razorpay.Client(auth=(key_id, key_secret))
+    receipt_id = f"rcpt_{uuid.uuid4().hex[:12]}"
+
+    try:
+        order = client.order.create(
+            data={
+                "amount": payload.amount,
+                "currency": "INR",
+                "receipt": receipt_id,
+                "payment_capture": 1,
+            }
+        )
+    except razorpay.errors.AuthenticationError as exc:
+        print(f"[ERROR] Razorpay auth failure: {exc}")
+        raise HTTPException(
+            500, "Razorpay authentication failed. Check credentials."
+        ) from exc
+    except Exception as exc:
+        print(f"[ERROR] Razorpay order creation failed: {exc}")
+        raise HTTPException(502, f"Razorpay API error: {exc}") from exc
+
+    order_id = order.get("id") if isinstance(order, dict) else None
+    if not order_id:
+        raise HTTPException(502, "Razorpay did not return a valid order ID.")
+
+    return {
+        "order_id": order_id,
+        "amount": payload.amount,
+        "currency": "INR",
+        "key_id": key_id,
+    }
+
+
+class VerifyPaymentIn(BaseModel):
+    razorpay_order_id: str = ""
+    razorpay_payment_id: str = ""
+    razorpay_signature: str = ""
+
+
+@app.post("/api/verify-payment")
+async def verify_payment(payload: VerifyPaymentIn, request: Request):
+    rate_limit(request)
+
+    if (
+        not payload.razorpay_order_id
+        or not payload.razorpay_payment_id
+        or not payload.razorpay_signature
+    ):
+        raise HTTPException(400, "Missing required Razorpay payment fields.")
+
+    key_secret = os.getenv("RAZORPAY_KEY_SECRET") or RAZORPAY_KEY_SECRET
+    if not key_secret:
+        print("[ERROR] Razorpay secret not set in environment.")
+        raise HTTPException(500, "Payment service authentication is not configured.")
+
+    msg = f"{payload.razorpay_order_id}|{payload.razorpay_payment_id}".encode("utf-8")
+    generated_signature = hmac.new(
+        key_secret.encode("utf-8"), msg, hashlib.sha256
+    ).hexdigest()
+
+    if hmac.compare_digest(generated_signature, payload.razorpay_signature):
+        print(
+            f"[PAID] Verified payment {payload.razorpay_payment_id} for order {payload.razorpay_order_id}"
+        )
+        return {"verified": True}
+
+    print(
+        f"[WARNING] Invalid payment signature attempt for order_id={payload.razorpay_order_id}, payment_id={payload.razorpay_payment_id}"
+    )
+    return JSONResponse(status_code=400, content={"verified": False})
 
 
 @app.get("/api/proxy")
