@@ -8,3 +8,4 @@ docs/
 .git/
 .pytest_cache/
 .DS_Store
+env.yaml
