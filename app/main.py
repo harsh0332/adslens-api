@@ -43,6 +43,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel
 
+from app.insight import generate_insight
+
 # --------------------------------------------------------------------------- #
 # Config
 # --------------------------------------------------------------------------- #
@@ -173,6 +175,77 @@ class ExtractCache:
 
 
 _extract_cache = ExtractCache()
+
+# --------------------------------------------------------------------------- #
+# In-memory Insight Cache (TTL 7 days, max 300 entries)
+# --------------------------------------------------------------------------- #
+
+INSIGHT_CACHE_TTL_S = 7 * 24 * 3600  # 7 days
+INSIGHT_CACHE_MAX_SIZE = 300
+
+
+class InsightCache:
+    def __init__(
+        self,
+        max_size: int = INSIGHT_CACHE_MAX_SIZE,
+        ttl_s: float = INSIGHT_CACHE_TTL_S,
+    ):
+        self.max_size = max_size
+        self.ttl_s = ttl_s
+        self._cache: OrderedDict[str, dict] = OrderedDict()
+        self.hits: int = 0
+        self.misses: int = 0
+
+    def get(self, ad_id: str) -> dict | None:
+        if not ad_id or ad_id not in self._cache:
+            self.misses += 1
+            return None
+
+        entry = self._cache[ad_id]
+        now = time.time()
+        if now - entry["cached_at"] > self.ttl_s:
+            del self._cache[ad_id]
+            self.misses += 1
+            return None
+
+        self._cache.move_to_end(ad_id)
+        self.hits += 1
+        return entry["payload"]
+
+    def set(self, ad_id: str, payload: dict) -> None:
+        if not ad_id:
+            return
+        now = time.time()
+
+        if ad_id not in self._cache and len(self._cache) >= self.max_size:
+            self._cache.popitem(last=False)
+
+        self._cache[ad_id] = {
+            "cached_at": now,
+            "payload": payload,
+        }
+        self._cache.move_to_end(ad_id)
+
+    @property
+    def size(self) -> int:
+        now = time.time()
+        expired = [
+            k for k, v in self._cache.items() if now - v["cached_at"] > self.ttl_s
+        ]
+        for k in expired:
+            del self._cache[k]
+        return len(self._cache)
+
+    @property
+    def stats(self) -> dict:
+        return {
+            "insight_cache_size": self.size,
+            "insight_cache_hits": self.hits,
+            "insight_cache_misses": self.misses,
+        }
+
+
+_insight_cache = InsightCache()
 
 # --------------------------------------------------------------------------- #
 # Rate limiting (in-memory; move to Redis before running multiple workers)
@@ -718,6 +791,66 @@ async def proxy(url: str, request: Request, filename: str = "ad.mp4"):
     )
 
 
+class InsightIn(BaseModel):
+    url: str
+    country: str = DEFAULT_COUNTRY
+
+
+@app.post("/api/insight")
+async def insight_endpoint(payload: InsightIn, request: Request) -> dict:
+    rate_limit(request)
+
+    insight_enabled = os.getenv("INSIGHT_ENABLED", "false").lower() == "true"
+    if not insight_enabled:
+        return {"insight": None, "reason": "disabled"}
+
+    ad_id = extract_ad_id(payload.url)
+
+    cached_insight = _insight_cache.get(ad_id)
+    if cached_insight is not None:
+        return {"insight": cached_insight, "cached": True}
+
+    ad_data = _extract_cache.get(ad_id)
+    if ad_data is None:
+        target = ad_library_url(ad_id, payload.country)
+        session = await get_session()
+        try:
+            resp = await fetch_with_challenge(session, target)
+        except Exception as exc:
+            raise HTTPException(502, f"Could not reach Meta: {exc}") from exc
+
+        if resp.status_code != 200 or "deeplink_ad_archive" not in resp.text:
+            session = await get_session(force_new=True)
+            try:
+                resp = await fetch_with_challenge(session, target)
+            except Exception as exc:
+                raise HTTPException(502, f"Could not reach Meta: {exc}") from exc
+
+        if resp.status_code != 200:
+            raise HTTPException(502, f"Meta returned HTTP {resp.status_code}")
+
+        ad_data = normalise(find_ad_object(resp.text, ad_id), ad_id, target)
+        try:
+            score_obj = score_ad(ad_data)
+        except Exception as exc:
+            print(f"[ERROR] Scoring failed for ad_id={ad_id}: {exc}")
+            score_obj = None
+
+        ad_data["score"] = score_obj
+
+        now = time.time()
+        ad_data["cache_hit"] = False
+        ad_data["cached_at"] = now
+        _extract_cache.set(ad_id, ad_data)
+
+    insight_res = await generate_insight(ad_data)
+    if insight_res is None:
+        return {"insight": None, "reason": "unavailable"}
+
+    _insight_cache.set(ad_id, insight_res)
+    return {"insight": insight_res, "cached": False}
+
+
 @app.get("/api/health")
 async def health() -> dict:
     res = {
@@ -725,6 +858,7 @@ async def health() -> dict:
         "session_age_s": round(time.time() - _session_born),
     }
     res.update(_extract_cache.stats)
+    res.update(_insight_cache.stats)
     return res
 
 
